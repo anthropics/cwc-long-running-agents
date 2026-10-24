@@ -21,7 +21,7 @@ case "$target" in "$results"|*/"$results") ;; *) exit 0 ;; esac
 
 if [ ! -s "$log" ]; then
   cat <<'JSON'
-{"decision":"block","reason":"Cannot modify the results file: no screenshot or console-log evidence has been Read this session. Open the evidence file with the Read tool first, then retry."}
+{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Cannot modify the results file: no screenshot or console-log evidence has been Read this session. Open the evidence file with the Read tool first, then retry."}}
 JSON
   exit 0
 fi

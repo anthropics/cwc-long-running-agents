@@ -9,6 +9,6 @@ f="${AGENT_STEER_FILE:-./STEER.md}"
 if [ -s "$f" ]; then
   note=$(cat "$f")
   reason=$(python3 -c 'import json,sys; print(json.dumps("OPERATOR STEERING: " + sys.argv[1] + "\n\nPause what you were about to do, incorporate this guidance, then continue toward the feature goal."))' "$note" 2>/dev/null) || exit 0
-  printf '{"decision":"block","reason":%s}\n' "$reason"
+  printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":%s}}\n' "$reason"
   : > "$f"
 fi
